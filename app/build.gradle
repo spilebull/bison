@@ -41,14 +41,14 @@ android {
                 // ビルドのメッセージとして設定
                 message = "debug build ${hash}"
 
-                // 配布ページを利用している場合、以下の設定で同時に更新することができます
+                // 配布ページを利用している場合、以下の設定で同時に更新可
                 distributionKey = "1234567890abcdef1234567890abcdef"
                 releaseNote = "release note sample"
             }
 
-            // 以下では `uploadDeployGateCustom` を作成して、任意のAPKファイルをアップロードします
+            // `uploadDeployGateCustom` を作成して、任意のAPKファイルをアップロード
             custom {
-                // 対象のファイルを設定
+                // 対象ファイル設定
                 sourceFile = file("${project.rootDir}/app/build/some-custom-build.apk")
             }
         }

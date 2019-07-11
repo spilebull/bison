@@ -32,7 +32,8 @@ android:
   - extra
 
 script:
-- "./gradlew clean test build"
+- ./gradlew clean test build
+- ./gradlew uploadDeployGateDevelopDebug
 
 before_deploy:
 - openssl aes-256-cbc -K $encrypted_657e27e4d3ee_key -iv $encrypted_657e27e4d3ee_iv -in keystore.jks.enc -out keystore.jks -d
