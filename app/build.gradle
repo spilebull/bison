@@ -7,13 +7,16 @@ android {
     compileSdkVersion 28
     defaultConfig {
         applicationId "com.cotetsu.bison"
-        minSdkVersion 28
+        minSdkVersion 26
         targetSdkVersion 28
         versionCode 1
         versionName "1.0.0"
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
     }
     buildTypes {
+        debug {
+            debuggable true
+        }
         release {
             minifyEnabled false
             proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
@@ -28,28 +31,25 @@ android {
     // DeployGate 自動ビルド設定
     deploygate {
         // アプリ所有者 [ユーザー名] or [グループ名]
-        userName = "spilebull"
+        userName = "$System.env.DEPLOYGATE_USER"
         // [ユーザー] or [グループ] の [API Key]
-        token = "db9cf7eeb4c263bea48d86793874628cc6bad781"
+        token = "$System.env.DEPLOYGATE_TOKEN"
 
         // 追加設定（フレーバー毎）
         apks {
             // `debug` フレーバーに対応し `uploadDeployGateDebug` タスクで使用
             debug {
+                // 対象のファイルを設定
+                sourceFile = file("${project.rootDir}/app/build/outputs/apk/debug/app-debug.apk")
                 // 便利情報: 現在のコミットの git のハッシュ を使うとトラブルシューティングを楽にできます
                 def hash = 'git rev-parse --short HEAD'.execute([], project.rootDir).in.text.trim()
                 // ビルドのメッセージとして設定
                 message = "debug build ${hash}"
-
+                // `Git` コミットログ取得
+                def log = 'git log -n 5 --oneline | cut -c 9-'.execute().text
                 // 配布ページを利用している場合、以下の設定で同時に更新可
-                distributionKey = "1234567890abcdef1234567890abcdef"
-                releaseNote = "release note sample"
-            }
-
-            // `uploadDeployGateCustom` を作成して、任意のAPKファイルをアップロード
-            custom {
-                // 対象ファイル設定
-                sourceFile = file("${project.rootDir}/app/build/some-custom-build.apk")
+                distributionKey = "$System.env.DEPLOYGATE_DISTRIBUTION_KEY"
+                releaseNote = "${log}"
             }
         }
     }
