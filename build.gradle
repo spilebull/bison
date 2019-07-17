@@ -2,7 +2,7 @@ buildscript {
     ext {
         ver_kotlin = '1.3.41'
         ver_build_gradle = '3.4.2'
-        ver_deploygate = '1.1.3'
+        ver_deploygate = '2.0.1'
         ver_androidx = '1.0.2'
         ver_androidx_constraintlayout = '1.1.3'
         ver_test_junit = '4.12'
