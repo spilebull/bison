@@ -1,4 +1,5 @@
 import org.jetbrains.kotlin.config.KotlinCompilerVersion
+import org.jlleitschuh.gradle.ktlint.reporter.ReporterType
 
 //========================================
 // Plugins Libraries
@@ -9,6 +10,7 @@ plugins {
     kotlin("android.extensions")
     id("deploygate")
     id("jacoco-android")
+    id("org.jlleitschuh.gradle.ktlint")
 }
 
 //========================================
@@ -96,4 +98,14 @@ jacocoAndroidUnitTestReport {
     csv.enabled(false)
     html.isEnabled
     xml.isEnabled
+}
+
+//========================================
+// Ktlint Settings
+//========================================
+ktlint {
+    version.set("0.22.0")
+    android.set(true)
+    reporters.set(setOf(ReporterType.PLAIN, ReporterType.CHECKSTYLE))
+    ignoreFailures.set(true)
 }
