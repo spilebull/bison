@@ -1,5 +1,8 @@
 import org.jetbrains.kotlin.config.KotlinCompilerVersion
 
+//========================================
+// Plugins Libraries
+//========================================
 plugins {
     id("com.android.application")
     kotlin("android")
@@ -8,6 +11,9 @@ plugins {
     id("jacoco-android")
 }
 
+//========================================
+// Android Settings
+//========================================
 android {
     compileSdkVersion(28)
     buildToolsVersion = "28.0.3"
@@ -37,6 +43,9 @@ android {
     }
 }
 
+//========================================
+// Dependencies Implementation
+//========================================
 dependencies {
     // --------- Default Library --------------------
     implementation(fileTree(mapOf("dir" to "libs", "include" to listOf("*.jar"))))
@@ -52,7 +61,7 @@ dependencies {
 }
 
 //========================================
-// DeployGate
+// DeployGate Settings
 //========================================
 deploygate {
     // アプリ所有者 [ユーザー名] or [グループ名]
@@ -70,12 +79,12 @@ deploygate {
                 it.readText()
             }.trim()
             // ビルドのメッセージとして設定
-            message = "debug build ${hash}"
+            message = "debug build $hash"
             // `Git` コミットログ取得（val log = 'git log -n 5 --oneline | cut -c 9-'.execute().text）
             val log = "git log -n 5 --oneline | cut -c 9-"
             // 配布ページを利用している場合、以下の設定で同時に更新可
             distributionKey = System.getenv("DEPLOYGATE_DISTRIBUTION_KEY")
-            releaseNote = "${log}"
+            releaseNote = "$log"
         }
     }
 }
