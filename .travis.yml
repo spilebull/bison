@@ -34,14 +34,14 @@ android:
     - build-tools-${ANDROID_BUILD_TOOLS}
     - extra
 
-# develop ブランチのみ実行
+# master ブランチのみ実行
 branches:
   only:
-    - develop
+    - master
 
 # インストール実行
 install:
-  - bundle install
+  - bundle install --path vendor/bundle
 
 # スクリプト実行処理
 script:
