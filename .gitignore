@@ -34,10 +34,12 @@ captures/
 
 # IntelliJ
 *.iml
+.idea/
 .idea/assetWizardSettings.xml
 .idea/caches
 .idea/dictionaries
 .idea/gradle.xml
+.idea/kotlinScripting.xml
 .idea/libraries
 .idea/misc.xml
 .idea/modules.xml

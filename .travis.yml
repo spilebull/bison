@@ -16,6 +16,7 @@ cache:
 # 環境変数
 env:
  global:
+   - secure: "c0sh22/9VJguv2XD/tNSZVmRdbg0HVmhxjhfeRHE1qGeDjZ9U4YFMV6tl/naqm/CLrgpjFeNRzyd7tG5yxkWcTECtp1Ko9rkDieBndUt+RCkgHKh+Po9MdIvXet422ASIoddNWzgxXxG44sgcLO+pWpZMIowgl8X/LTCFnEvWu65Svg1Zn7zoHvFwst0o46Y1r7zVCUcMpP2VqZVkwzfmDuGtDU9u26w2beiFEgImAMM7+luZkTqCviSJeY1VoVu31ZycJyz8tkmWg3ou01nyCMwHOhfXYaFTDanx3etm2RFR4LtVw0JDYAj0ZwjVDokQvH4KUHtPm5URh94bmYIlU3W47s3HqUaLb51ICRDIMApfbEhPVZiO/VLQ44w4CS3q4R8bsn0Wkps0DV63C9XFLkKiVUpmmHmuDMwe3Z+rd1vwniCeMgSZ+KAH97Ri524EwF4rR4MfXVdX2icgXW5KWHc+rpzidwlyK2/PlmjcS4Jm5n09WDGJ0M2j+Bhekj0kztOm46xtswidesihKZDWOuzUhtvk7YxXnubblLTGrvYtilo7e/FCFuhyZLU9iwrpGVIZoLoQF8VNJDiUHKkXLnptT3rmxz/p5eILs0q+tLtpAcBgMtQB6aG+Nc2/meIWC0ZN66ChAR+vcVdcqk15CckeONohxTDhh/xd2PdsJA="
    - DEPLOYGATE_USER=spilebull
    - DEPLOYGATE_TOKEN=db9cf7eeb4c263bea48d86793874628cc6bad781
    - DEPLOYGATE_DISTRIBUTION_KEY=cbfde9936959ad972e702e9e12c48678fe37301d
@@ -38,15 +39,25 @@ branches:
   only:
     - develop
 
+# インストール前実行
+before_install:
+  - travis_retry gem update --system || travis_retry gem update --system 2.7.8
+  - travis_retry gem install bundler --no-document || travis_retry gem install bundler --no-document -v 1.17.3
+
+# インストール実行
+install:
+  - bundle install
+
 # スクリプト実行処理
 script:
-  - ./gradlew clean build
+  - ./gradlew clean assembleDebug ktlintCheck
   - ./gradlew check test jacocoTestReport
-  - ./gradlew uploadDeployGateDebug
+  - bundle exec danger
 
 # 成功時のみ実行処理
 after_success:
   - bash <(curl -s https://codecov.io/bash)
+  - ./gradlew uploadDeployGateDebug
 
 # 通知設定
 notifications:
