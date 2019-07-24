@@ -7,8 +7,8 @@ import android.content.IntentFilter
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.text.format.DateFormat
-import kotlinx.android.synthetic.main.activity_main.*
-import java.util.*
+import kotlinx.android.synthetic.main.activity_main.timeText
+import java.util.Date
 
 class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -28,13 +28,13 @@ class MainActivity : AppCompatActivity() {
     }
 
     private fun updateDisplayTime() {
-        timeText.text=DateFormat.getTimeFormat(this).format(Date())
+        timeText.text = DateFormat.getTimeFormat(this).format(Date())
     }
 
     private val timeTicker = object : BroadcastReceiver() {
         override fun onReceive(context: Context, intent: Intent) {
             if (intent.action == Intent.ACTION_TIME_TICK) {
-                updateDisplayTime();
+                updateDisplayTime()
             }
         }
     }
