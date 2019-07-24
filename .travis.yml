@@ -34,14 +34,19 @@ android:
     - build-tools-${ANDROID_BUILD_TOOLS}
     - extra
 
-# master ブランチのみ実行
+# develop ブランチのみ実行
 branches:
   only:
-    - master
+    - develop
+
+# インストール前実行
+before_install:
+  - travis_retry gem update --system || travis_retry gem update --system 2.7.8
+  - travis_retry gem install bundler --no-document || travis_retry gem install bundler --no-document -v 1.17.3
 
 # インストール実行
 install:
-  - bundle install --path vendor/bundle
+  - bundle install
 
 # スクリプト実行処理
 script:
