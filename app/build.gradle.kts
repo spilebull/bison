@@ -88,7 +88,9 @@ deploygate {
             // ビルドのメッセージとして設定
             message = "debug build $hash"
             // `Git` コミットログ取得（val log = 'git log -n 5 --oneline | cut -c 9-'.execute().text）
-            val log = "git log -n 5 --oneline | cut -c 9-"
+            val log = Runtime.getRuntime().exec("git log -n 5 --oneline | cut -c 9-").inputStream.reader().use {
+                it.readText()
+            }.trim()
             // 配布ページを利用している場合、以下の設定で同時に更新可
             distributionKey = System.getenv("DEPLOYGATE_DISTRIBUTION_KEY")
             releaseNote = "$log"
