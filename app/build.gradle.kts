@@ -11,6 +11,7 @@ plugins {
     id("deploygate")
     id("jacoco-android")
     id("org.jlleitschuh.gradle.ktlint")
+    id("com.google.gms.google-services")
 }
 
 //========================================
@@ -56,6 +57,10 @@ dependencies {
     implementation("androidx.core:core-ktx:1.0.2")
     implementation("androidx.constraintlayout:constraintlayout:1.1.3")
 
+    // --------- Firebase ---------------------------
+    implementation("com.google.firebase:firebase-core:17.0.1")
+    implementation("com.google.firebase:firebase-messaging:19.0.1")
+
     // --------- Test -------------------------------
     testImplementation("junit:junit:4.12")
     androidTestImplementation("androidx.test:runner:1.2.0")
@@ -83,7 +88,7 @@ deploygate {
             // ビルドのメッセージとして設定
             message = "debug build $hash"
             // `Git` コミットログ取得（val log = 'git log -n 5 --oneline | cut -c 9-'.execute().text）
-            val log = "git log -n 5 --oneline | cut -c 9-"
+            val log = Runtime.getRuntime().exec("git log -n 5 --oneline | cut -c 9-")
             // 配布ページを利用している場合、以下の設定で同時に更新可
             distributionKey = System.getenv("DEPLOYGATE_DISTRIBUTION_KEY")
             releaseNote = "$log"
