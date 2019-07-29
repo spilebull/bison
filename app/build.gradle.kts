@@ -81,8 +81,8 @@ dependencies {
     implementation("com.jakewharton.retrofit:retrofit2-kotlin-coroutines-adapter:0.9.2")
 
     // --------- Okhttp -----------------------------
-    implementation("com.squareup.okhttp3:okhttp:3.13.1")
-    implementation("com.squareup.okhttp3:logging-interceptor:3.13.1")
+    implementation("com.squareup.okhttp3:okhttp:4.0.1")
+    implementation("com.squareup.okhttp3:logging-interceptor:4.0.1")
 
     // --------- Kotlin Coroutines ------------------
     implementation("org.jetbrains.kotlinx:kotlinx-coroutines-core:1.2.2")

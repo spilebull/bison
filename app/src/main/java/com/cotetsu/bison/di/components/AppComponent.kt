@@ -2,6 +2,7 @@ package com.cotetsu.bison.di.components
 
 import com.cotetsu.bison.App
 import com.cotetsu.bison.di.modules.ActivityModule
+import com.cotetsu.bison.di.modules.NetworkModule
 import dagger.BindsInstance
 import dagger.Component
 import dagger.android.AndroidInjector
@@ -17,7 +18,8 @@ import javax.inject.Singleton
 @Singleton
 @Component(modules = [
     AndroidSupportInjectionModule::class,
-    ActivityModule::class
+    ActivityModule::class,
+    NetworkModule::class
 ])
 interface AppComponent : AndroidInjector<App> {
     override fun inject(application: App)
