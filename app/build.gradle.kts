@@ -37,7 +37,10 @@ android {
         }
         getByName("release") {
             isMinifyEnabled = false
-            proguardFiles(getDefaultProguardFile("proguard-android-optimize.txt"), "proguard-rules.pro")
+            proguardFiles(
+                getDefaultProguardFile("proguard-android-optimize.txt"),
+                "proguard-rules.pro"
+            )
         }
     }
 
@@ -89,9 +92,10 @@ deploygate {
             // 対象のファイルを設定
             sourceFile = file("${project.rootDir}/app/build/outputs/apk/debug/app-debug.apk")
             // 現在のコミットの git のハッシュ を使用（'git rev-parse --short HEAD'.execute([], project.rootDir).in.text.trim()）
-            val hash = Runtime.getRuntime().exec("git rev-parse --short HEAD").inputStream.reader().use {
-                it.readText()
-            }.trim()
+            val hash =
+                Runtime.getRuntime().exec("git rev-parse --short HEAD").inputStream.reader().use {
+                    it.readText()
+                }.trim()
             // ビルドのメッセージとして設定
             message = "debug build $hash"
             // `Git` コミットログ取得（val log = 'git log -n 5 --oneline | cut -c 9-'.execute().text）
