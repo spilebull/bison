@@ -65,11 +65,11 @@ dependencies {
     implementation("com.google.firebase:firebase-core:17.0.1")
     implementation("com.google.firebase:firebase-messaging:19.0.1")
 
-    // --------- Dagger2 ----------------------------
+    // --------- Dagger -----------------------------
     implementation("com.google.dagger:dagger-android:2.23.2")
     implementation("com.google.dagger:dagger-android-support:2.23.2")
-    kapt("com.google.dagger:dagger-android-processor:2.23.2")
     kapt("com.google.dagger:dagger-compiler:2.23.2")
+    kapt("com.google.dagger:dagger-android-processor:2.23.2")
 
     // --------- Test -------------------------------
     testImplementation("junit:junit:4.12")

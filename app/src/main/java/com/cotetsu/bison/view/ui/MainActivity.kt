@@ -1,16 +1,23 @@
-package com.cotetsu.bison
+package com.cotetsu.bison.view.ui
 
 import android.content.BroadcastReceiver
 import android.content.Context
 import android.content.Intent
 import android.content.IntentFilter
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.text.format.DateFormat
+import com.cotetsu.bison.R
+import dagger.android.support.DaggerAppCompatActivity
 import kotlinx.android.synthetic.main.activity_main.timeText
 import java.util.Date
 
-class MainActivity : AppCompatActivity() {
+/**
+ * 主処理
+ *
+ * @date 2019-07-29
+ * @author spilebull
+ */
+class MainActivity : DaggerAppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
