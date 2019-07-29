@@ -8,6 +8,7 @@ plugins {
     id("com.android.application")
     kotlin("android")
     kotlin("android.extensions")
+    kotlin("kapt")
     id("deploygate")
     id("jacoco-android")
     id("org.jlleitschuh.gradle.ktlint")
@@ -36,7 +37,10 @@ android {
         }
         getByName("release") {
             isMinifyEnabled = false
-            proguardFiles(getDefaultProguardFile("proguard-android-optimize.txt"), "proguard-rules.pro")
+            proguardFiles(
+                getDefaultProguardFile("proguard-android-optimize.txt"),
+                "proguard-rules.pro"
+            )
         }
     }
 
@@ -61,6 +65,12 @@ dependencies {
     implementation("com.google.firebase:firebase-core:17.0.1")
     implementation("com.google.firebase:firebase-messaging:19.0.1")
 
+    // --------- Dagger2 ----------------------------
+    implementation("com.google.dagger:dagger-android:2.23.2")
+    implementation("com.google.dagger:dagger-android-support:2.23.2")
+    kapt("com.google.dagger:dagger-android-processor:2.23.2")
+    kapt("com.google.dagger:dagger-compiler:2.23.2")
+
     // --------- Test -------------------------------
     testImplementation("junit:junit:4.12")
     androidTestImplementation("androidx.test:runner:1.2.0")
@@ -82,9 +92,10 @@ deploygate {
             // 対象のファイルを設定
             sourceFile = file("${project.rootDir}/app/build/outputs/apk/debug/app-debug.apk")
             // 現在のコミットの git のハッシュ を使用（'git rev-parse --short HEAD'.execute([], project.rootDir).in.text.trim()）
-            val hash = Runtime.getRuntime().exec("git rev-parse --short HEAD").inputStream.reader().use {
-                it.readText()
-            }.trim()
+            val hash =
+                Runtime.getRuntime().exec("git rev-parse --short HEAD").inputStream.reader().use {
+                    it.readText()
+                }.trim()
             // ビルドのメッセージとして設定
             message = "debug build $hash"
             // `Git` コミットログ取得（val log = 'git log -n 5 --oneline | cut -c 9-'.execute().text）
