@@ -62,7 +62,7 @@ dependencies {
     implementation("androidx.constraintlayout:constraintlayout:1.1.3")
 
     // --------- Firebase ---------------------------
-    implementation("com.google.firebase:firebase-core:17.0.1")
+    implementation("com.google.firebase:firebase-core:18.0.1")
     implementation("com.google.firebase:firebase-messaging:19.0.1")
 
     // --------- Dagger -----------------------------
