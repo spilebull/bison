@@ -12,7 +12,7 @@ buildscript {
         classpath("com.deploygate:gradle:2.0.1")
         classpath("com.dicedmelon.gradle:jacoco-android:0.1.4")
         classpath("org.jlleitschuh.gradle:ktlint-gradle:8.2.0")
-        classpath("com.google.gms:google-services:4.2.0")
+        classpath("com.google.gms:google-services:4.3.5")
     }
 }
 
