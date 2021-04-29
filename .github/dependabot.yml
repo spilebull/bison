@@ -1,0 +1,28 @@
+version: 2
+updates:
+- package-ecosystem: gradle
+  directory: "/"
+  schedule:
+    interval: daily
+  open-pull-requests-limit: 10
+  ignore:
+  - dependency-name: com.google.dagger:dagger-android-support
+    versions:
+    - 2.31.2
+    - "2.32"
+    - "2.33"
+    - "2.34"
+    - 2.34.1
+  - dependency-name: com.google.dagger:dagger-android
+    versions:
+    - 2.31.1
+    - "2.32"
+    - "2.33"
+    - "2.34"
+    - 2.34.1
+  - dependency-name: com.google.firebase:firebase-core
+    versions:
+    - 18.0.2
+  - dependency-name: com.android.tools.build:gradle
+    versions:
+    - 4.1.2
