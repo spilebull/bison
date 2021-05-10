@@ -9,7 +9,7 @@ buildscript {
     dependencies {
         classpath("com.android.tools.build:gradle:3.4.2")
         classpath(kotlin("gradle-plugin", version = "1.3.41"))
-        classpath("com.deploygate:gradle:2.0.1")
+        classpath("com.deploygate:gradle:2.4.0")
         classpath("com.dicedmelon.gradle:jacoco-android:0.1.4")
         classpath("org.jlleitschuh.gradle:ktlint-gradle:8.2.0")
         classpath("com.google.gms:google-services:4.2.0")
