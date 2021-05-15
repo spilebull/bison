@@ -9,10 +9,10 @@ plugins {
     kotlin("android")
     kotlin("android.extensions")
     kotlin("kapt")
+    id("com.google.gms.google-services")
     id("deploygate")
     id("jacoco-android")
     id("org.jlleitschuh.gradle.ktlint")
-    id("com.google.gms.google-services")
 }
 
 //========================================
@@ -24,7 +24,7 @@ android {
 
     defaultConfig {
         applicationId = "com.cotetsu.bison"
-        minSdkVersion(19)
+        minSdkVersion(26)
         targetSdkVersion(28)
         versionCode = 1
         versionName = "1.0.0"
@@ -70,6 +70,23 @@ dependencies {
     implementation("com.google.dagger:dagger-android-support:2.23.2")
     kapt("com.google.dagger:dagger-compiler:2.23.2")
     kapt("com.google.dagger:dagger-android-processor:2.23.2")
+
+    // --------- Moshi ------------------------------
+    implementation("com.squareup.moshi:moshi:1.8.0")
+    implementation("com.squareup.moshi:moshi-kotlin:1.8.0")
+
+    // --------- Retrofit ---------------------------
+    implementation("com.squareup.retrofit2:retrofit:2.6.0")
+    implementation("com.squareup.retrofit2:converter-moshi:2.6.0")
+    implementation("com.jakewharton.retrofit:retrofit2-kotlin-coroutines-adapter:0.9.2")
+
+    // --------- Okhttp -----------------------------
+    implementation("com.squareup.okhttp3:okhttp:4.0.1")
+    implementation("com.squareup.okhttp3:logging-interceptor:4.0.1")
+
+    // --------- Kotlin Coroutines ------------------
+    implementation("org.jetbrains.kotlinx:kotlinx-coroutines-core:1.2.2")
+    implementation("org.jetbrains.kotlinx:kotlinx-coroutines-android:1.2.2")
 
     // --------- Test -------------------------------
     testImplementation("junit:junit:4.12")
